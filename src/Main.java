@@ -7,11 +7,11 @@ public class Main {
 
     public static void main(String[] args) {
         // Problem #1
-        // System.out.println(solution1(new int[] {10, 15, 3, 7}, 17));
+        /*System.out.println(solution1(new int[] {10, 15, 3, 7}, 17));*/
 
         // Problem #2
-        // System.out.println(Arrays.toString(solution2_1(new int[]{1, 2, 3, 4, 5})));
-        // System.out.println(Arrays.toString(solution2_2(new int[]{1, 2, 3, 4, 5})));
+        /*System.out.println(Arrays.toString(solution2_1(new int[]{1, 2, 3, 4, 5})));
+        System.out.println(Arrays.toString(solution2_2(new int[]{1, 2, 3, 4, 5})));*/
 
         // Problem #3
         /*Node<String> node = new Node<>(
@@ -22,8 +22,13 @@ public class Main {
                         null),
                 new Node<>("right"));
         assert Node.deserialize(node.serialize()).getLeft().getLeft().getValue() == "left.left";*/
-        System.out.println(car(cons(3, 4)));
-        System.out.println(cdr(cons(3, 4)));
+
+        // Problem #5
+        /*System.out.println(car(cons(3, 4)));
+        System.out.println(cdr(cons(3, 4)));*/
+
+        // Problem #7
+        /*System.out.println(solution7("111"));*/
     }
 
     public static boolean solution1(int[] numbers, int k) {
@@ -71,5 +76,18 @@ public class Main {
 
     public static int cdr(Function<BiFunction<Integer, Integer, Integer>, Integer> pair) {
         return pair.apply(Math::max);
+    }
+
+    public static int solution7(String message) {
+        if (message.indexOf('0') != -1) {
+            throw new IllegalArgumentException("Zero is not allowed in the message content!");
+        }
+        if (message.length() <= 1) {
+            return 1;
+        } else {
+            return Integer.parseInt(message.substring(0, 2)) <= 26
+                    ? solution7(message.substring(1)) + solution7(message.substring(2))
+                    : solution7(message.substring(1));
+        }
     }
 }

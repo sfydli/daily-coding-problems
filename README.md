@@ -5,6 +5,7 @@
     + [2. Array of non-index products](#2-array-of-non-index-products)
     + [3. Binary tree serialization / deserialization](#3-binary-tree-serialization---deserialization)
     + [5. Functional min / max implementation](#5-functional-min---max-implementation)
+    + [7. Number of decoding methods](#7-number-of-decoding-methods)
 
 ##### 1. Sum check of two numbers
 
@@ -192,5 +193,34 @@ public static int car(Function<BiFunction<Integer, Integer, Integer>, Integer> p
 
 public static int cdr(Function<BiFunction<Integer, Integer, Integer>, Integer> pair) {
     return pair.apply(Math::max);
+}
+````
+
+##### 7. Number of decoding methods
+
+~~~~
+This problem was asked by Facebook.
+
+Given the mapping a = 1, b = 2, ... z = 26, and an encoded message, count the number of ways it can be decoded.
+
+For example, the message '111' would give 3, since it could be decoded as 'aaa', 'ka', and 'ak'.
+
+You can assume that the messages are decodable. For example, '001' is not allowed.
+~~~~
+
+> Solution
+
+````java
+public static int solution7(String message) {
+    if (message.indexOf('0') != -1) {
+        throw new IllegalArgumentException("Zero is not allowed in the message content!");
+    }
+    if (message.length() <= 1) {
+        return 1;
+    } else {
+        return Integer.parseInt(message.substring(0, 2)) <= 26
+                ? solution7(message.substring(1)) + solution7(message.substring(2))
+                : solution7(message.substring(1));
+    }
 }
 ````
