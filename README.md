@@ -3,11 +3,11 @@
 - [Daily Coding Problems](#daily-coding-problems)
     + [1. Sum check of two numbers](#1-sum-check-of-two-numbers)
     + [2. Array of non-index products](#2-array-of-non-index-products)
-    + [3. Binary tree serialization / deserialization](#3-binary-tree-serialization---deserialization)
-    + [5. Functional min / max implementation](#5-functional-min---max-implementation)
+    + [3. Binary tree serialization-deserialization](#3-binary-tree-serialization-deserialization)
+    + [5. Functional min-max implementation](#5-functional-min-max-implementation)
     + [7. Number of decoding methods](#7-number-of-decoding-methods)
 
-##### 1. Sum check of two numbers
+##### 1. Sum check of two numbers 
 
 ~~~~
 Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
@@ -17,7 +17,8 @@ For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
 Bonus: Can you do this in one pass?
 ~~~~
 
-> Bonus solution
+<details>
+<summary>Bonus solution</summary>
 
 ````java
 public static boolean solution(int[] numbers, int k) {
@@ -32,6 +33,7 @@ public static boolean solution(int[] numbers, int k) {
     return false;
 }
 ````
+</details>
 
 ##### 2. Array of non-index products
 
@@ -43,7 +45,8 @@ For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120
 Follow-up: what if you can't use division?
 ~~~~
 
-> Normal solution
+<details>
+<summary>Normal solution</summary>
 
 ````java
 public static int[] solution2_1(int[] numbers) {
@@ -56,8 +59,10 @@ public static int[] solution2_1(int[] numbers) {
     return result;
 }
 ````
+</details>
 
-> Bonus solution
+<details>
+<summary>Bonus solution</summary>
 
 ````java
 public static int[] solution2_2(int[] numbers) {
@@ -73,8 +78,9 @@ public static int[] solution2_2(int[] numbers) {
     return result;
 }
 ````
+</details>
 
-##### 3. Binary tree serialization / deserialization
+##### 3. Binary tree serialization-deserialization
 
 ~~~~
 This problem was asked by Google.
@@ -94,7 +100,8 @@ node = Node('root', Node('left', Node('left.left')), Node('right'))
 assert deserialize(serialize(node)).left.left.val == 'left.left'
 ~~~~
 
-> Solution
+<details>
+<summary>Solution</summary>
 
 ````java
 public class Node<T> {
@@ -162,8 +169,9 @@ public class Node<T> {
     }
 }
 ````
+</details>
 
-##### 5. Functional min / max implementation
+##### 5. Functional min-max implementation
 
 ~~~~
 This problem was asked by Jane Street.
@@ -180,7 +188,8 @@ def cons(a, b):
 Implement car and cdr.
 ~~~~
 
-> Solution
+<details>
+<summary>Solution</summary>
 
 ````java
 public static Function<BiFunction<Integer, Integer, Integer>, Integer> cons(int a, int b) {
@@ -195,6 +204,7 @@ public static int cdr(Function<BiFunction<Integer, Integer, Integer>, Integer> p
     return pair.apply(Math::max);
 }
 ````
+</details>
 
 ##### 7. Number of decoding methods
 
@@ -208,7 +218,8 @@ For example, the message '111' would give 3, since it could be decoded as 'aaa',
 You can assume that the messages are decodable. For example, '001' is not allowed.
 ~~~~
 
-> Solution
+<details>
+<summary>Solution</summary>
 
 ````java
 public static int solution7(String message) {
@@ -224,3 +235,4 @@ public static int solution7(String message) {
     }
 }
 ````
+</details>
