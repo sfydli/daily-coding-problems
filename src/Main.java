@@ -4,9 +4,22 @@ import java.util.HashSet;
 public class Main {
 
     public static void main(String[] args) {
+        // Problem #1
         // System.out.println(solution1(new int[] {10, 15, 3, 7}, 17));
+
+        // Problem #2
         // System.out.println(Arrays.toString(solution2_1(new int[]{1, 2, 3, 4, 5})));
         // System.out.println(Arrays.toString(solution2_2(new int[]{1, 2, 3, 4, 5})));
+
+        // Problem #3
+        /*Node<String> node = new Node<>(
+                "root",
+                new Node<>(
+                        "left",
+                        new Node<>("left.left"),
+                        null),
+                new Node<>("right"));
+        assert Node.deserialize(node.serialize()).getLeft().getLeft().getValue() == "left.left";*/
     }
 
     public static boolean solution1(int[] numbers, int k) {
