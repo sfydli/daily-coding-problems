@@ -1,5 +1,7 @@
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class Main {
 
@@ -20,6 +22,8 @@ public class Main {
                         null),
                 new Node<>("right"));
         assert Node.deserialize(node.serialize()).getLeft().getLeft().getValue() == "left.left";*/
+        System.out.println(car(cons(3, 4)));
+        System.out.println(cdr(cons(3, 4)));
     }
 
     public static boolean solution1(int[] numbers, int k) {
@@ -55,5 +59,17 @@ public class Main {
             leftProduct *= numbers[i];
         }
         return result;
+    }
+
+    public static Function<BiFunction<Integer, Integer, Integer>, Integer> cons(int a, int b) {
+        return f -> f.apply(a, b);
+    }
+
+    public static int car(Function<BiFunction<Integer, Integer, Integer>, Integer> pair) {
+        return pair.apply(Math::min);
+    }
+
+    public static int cdr(Function<BiFunction<Integer, Integer, Integer>, Integer> pair) {
+        return pair.apply(Math::max);
     }
 }

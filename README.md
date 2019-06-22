@@ -3,6 +3,8 @@
 - [Daily Coding Problems](#daily-coding-problems)
     + [1. Sum check of two numbers](#1-sum-check-of-two-numbers)
     + [2. Array of non-index products](#2-array-of-non-index-products)
+    + [3. Binary tree serialization / deserialization](#3-binary-tree-serialization---deserialization)
+    + [5. Functional min / max implementation](#5-functional-min---max-implementation)
 
 ##### 1. Sum check of two numbers
 
@@ -157,5 +159,38 @@ public class Node<T> {
         string = deserialize(string, node.right);
         return string;
     }
+}
+````
+
+##### 5. Functional min / max implementation
+
+~~~~
+This problem was asked by Jane Street.
+
+cons(a, b) constructs a pair, and car(pair) and cdr(pair) returns the first and last element of that pair. For example, car(cons(3, 4)) returns 3, and cdr(cons(3, 4)) returns 4.
+
+Given this implementation of cons:
+
+def cons(a, b):
+    def pair(f):
+        return f(a, b)
+    return pair
+    
+Implement car and cdr.
+~~~~
+
+> Solution
+
+````java
+public static Function<BiFunction<Integer, Integer, Integer>, Integer> cons(int a, int b) {
+    return f -> f.apply(a, b);
+}
+
+public static int car(Function<BiFunction<Integer, Integer, Integer>, Integer> pair) {
+    return pair.apply(Math::min);
+}
+
+public static int cdr(Function<BiFunction<Integer, Integer, Integer>, Integer> pair) {
+    return pair.apply(Math::max);
 }
 ````
