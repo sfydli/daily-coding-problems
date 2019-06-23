@@ -6,6 +6,7 @@
     + [3. Binary tree serialization-deserialization](#3-binary-tree-serialization-deserialization)
     + [5. Functional min-max implementation](#5-functional-min-max-implementation)
     + [7. Number of decoding methods](#7-number-of-decoding-methods)
+    + [8. Count of unival subtrees](#8-count-of-unival-subtrees)
 
 ##### 1. Sum check of two numbers 
 
@@ -233,6 +234,54 @@ public static int solution7(String message) {
                 ? solution7(message.substring(1)) + solution7(message.substring(2))
                 : solution7(message.substring(1));
     }
+}
+````
+</details>
+
+
+##### 8. Count of unival subtrees
+
+~~~~
+This problem was asked by Google.
+
+A unival tree (which stands for "universal value") is a tree where all nodes under it have the same value.
+
+Given the root to a binary tree, count the number of unival subtrees.
+
+For example, the following tree has 5 unival subtrees:
+
+   0
+  / \
+ 1   0
+    / \
+   1   0
+  / \
+ 1   1
+~~~~
+
+<details>
+<summary>Solution</summary>
+
+````java
+public int getNumberOfUnivalSubtrees() {
+    return getNumberOfUnivalSubtrees(this).getKey();
+}
+
+private Pair<Integer, T> getNumberOfUnivalSubtrees(Node<T> node) {
+    int total = 0;
+    boolean isValueSame = true;
+    if (node.left != null) {
+        Pair<Integer, T> leftResult = getNumberOfUnivalSubtrees(node.left);
+        isValueSame = leftResult.getValue() == node.value;
+        total += leftResult.getKey();
+    }
+    if (node.right != null) {
+        Pair<Integer, T> rightResult = getNumberOfUnivalSubtrees(node.right);
+        isValueSame = isValueSame && rightResult.getValue() == node.value;
+        total += rightResult.getKey();
+    }
+    total += isValueSame ? 1 : 0;
+    return new Pair<>(total, isValueSame ? node.value : null);
 }
 ````
 </details>

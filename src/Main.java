@@ -29,6 +29,20 @@ public class Main {
 
         // Problem #7
         /*System.out.println(solution7("111"));*/
+
+        // Problem #8
+        /*Node<Integer> node = new Node<>(
+                0,
+                new Node<>(1),
+                new Node<>(
+                        0,
+                        new Node<>(
+                                1,
+                                new Node<>(1),
+                                new Node<>(1)),
+                        new Node<>(0)));
+        assert node.getNumberOfUnivalSubtrees() == 5;
+        System.out.println(node.getNumberOfUnivalSubtrees());*/
     }
 
     public static boolean solution1(int[] numbers, int k) {

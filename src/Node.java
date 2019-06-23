@@ -1,3 +1,5 @@
+import javafx.util.Pair;
+
 public class Node<T> {
 
     private T value;
@@ -60,5 +62,26 @@ public class Node<T> {
             return String.format("%s%s-%s%s", string, node.value.toString(), serialize(node.left, string), serialize(node.right, string));
         }
         return string + "null-";
+    }
+
+    public int getNumberOfUnivalSubtrees() {
+        return getNumberOfUnivalSubtrees(this).getKey();
+    }
+
+    private Pair<Integer, T> getNumberOfUnivalSubtrees(Node<T> node) {
+        int total = 0;
+        boolean isValueSame = true;
+        if (node.left != null) {
+            Pair<Integer, T> leftResult = getNumberOfUnivalSubtrees(node.left);
+            isValueSame = leftResult.getValue() == node.value;
+            total += leftResult.getKey();
+        }
+        if (node.right != null) {
+            Pair<Integer, T> rightResult = getNumberOfUnivalSubtrees(node.right);
+            isValueSame = isValueSame && rightResult.getValue() == node.value;
+            total += rightResult.getKey();
+        }
+        total += isValueSame ? 1 : 0;
+        return new Pair<>(total, isValueSame ? node.value : null);
     }
 }
