@@ -49,6 +49,10 @@ public class Main {
         // Problem #222
         /*System.out.println(solution222("/usr/bin/../bin/./scripts/../"));
         System.out.println(solution222("/usr/../usr/bin/../bin/./langs/python/../java"));*/
+
+        // Problem #214
+        System.out.println(solution214(156));
+        System.out.println(solution214(1983));
     }
 
     public static boolean solution1(int[] numbers, int k) {
@@ -121,5 +125,23 @@ public class Main {
             }
         }
         return tokens.stream().collect(Collectors.joining("/", "", "/"));
+    }
+
+    public static int solution214(int number) {
+        int max = 0;
+        int repetitions = 0;
+        while (number != 0) {
+            if (number % 2 == 1) {
+                number--;
+                repetitions++;
+            } else {
+                repetitions = 0;
+            }
+            if (repetitions > max) {
+                max = repetitions;
+            }
+            number /= 2;
+        }
+        return max;
     }
 }
