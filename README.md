@@ -7,6 +7,7 @@
     + [5. Functional min-max implementation](#5-functional-min-max-implementation)
     + [7. Number of decoding methods](#7-number-of-decoding-methods)
     + [8. Count of unival subtrees](#8-count-of-unival-subtrees)
+    + [222. Shortest absolute path](#222-shortest-absolute-path)
 
 ##### 1. Sum check of two numbers 
 
@@ -238,7 +239,6 @@ public static int solution7(String message) {
 ````
 </details>
 
-
 ##### 8. Count of unival subtrees
 
 ~~~~
@@ -284,4 +284,33 @@ private Pair<Integer, T> getNumberOfUnivalSubtrees(Node<T> node) {
     return new Pair<>(total, isValueSame ? node.value : null);
 }
 ````
+</details>
+
+##### 222. Shortest absolute path
+
+~~~~
+This problem was asked by Quora.
+
+Given an absolute pathname that may have . or .. as part of it, return the shortest standardized path.
+
+For example, given "/usr/bin/../bin/./scripts/../", return "/usr/bin/".
+~~~~
+
+<details>
+<summary>Solution</summary>
+
+````java
+public static String solution222(String path) {
+    Stack<String> tokens = new Stack<>();
+    for (String token : path.split("/")) {
+        if (token.equals("..")) {
+            tokens.pop();
+        } else if (!token.equals(".")) {
+            tokens.push(token);
+        }
+    }
+    return tokens.stream().collect(Collectors.joining("/", "", "/"));
+}
+````
+
 </details>

@@ -1,7 +1,9 @@
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Stack;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -43,6 +45,10 @@ public class Main {
                         new Node<>(0)));
         assert node.getNumberOfUnivalSubtrees() == 5;
         System.out.println(node.getNumberOfUnivalSubtrees());*/
+
+        // Problem #222
+        /*System.out.println(solution222("/usr/bin/../bin/./scripts/../"));
+        System.out.println(solution222("/usr/../usr/bin/../bin/./langs/python/../java"));*/
     }
 
     public static boolean solution1(int[] numbers, int k) {
@@ -103,5 +109,17 @@ public class Main {
                     ? solution7(message.substring(1)) + solution7(message.substring(2))
                     : solution7(message.substring(1));
         }
+    }
+
+    public static String solution222(String path) {
+        Stack<String> tokens = new Stack<>();
+        for (String token : path.split("/")) {
+            if (token.equals("..")) {
+                tokens.pop();
+            } else if (!token.equals(".")) {
+                tokens.push(token);
+            }
+        }
+        return tokens.stream().collect(Collectors.joining("/", "", "/"));
     }
 }
