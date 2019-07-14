@@ -7,6 +7,7 @@
     + [5. Functional min-max implementation](#5-functional-min-max-implementation)
     + [7. Number of decoding methods](#7-number-of-decoding-methods)
     + [8. Count of unival subtrees](#8-count-of-unival-subtrees)
+    + [214. Longest consecutive run of 1s](#214-longest-consecutive-run-of-1s)
     + [222. Shortest absolute path](#222-shortest-absolute-path)
 
 ##### 1. Sum check of two numbers 
@@ -284,6 +285,41 @@ private Pair<Integer, T> getNumberOfUnivalSubtrees(Node<T> node) {
     return new Pair<>(total, isValueSame ? node.value : null);
 }
 ````
+</details>
+
+##### 214. Longest consecutive run of 1s
+
+~~~~
+This problem was asked by Stripe.
+
+Given an integer n, return the length of the longest consecutive run of 1s in its binary representation.
+
+For example, given 156, you should return 3.
+~~~~
+
+<details>
+<summary>Solution</summary>
+
+````java
+public static int solution214(int number) {
+    int max = 0;
+    int repetitions = 0;
+    while (number != 0) {
+        if (number % 2 == 1) {
+            number--;
+            repetitions++;
+        } else {
+            repetitions = 0;
+        }
+        if (repetitions > max) {
+            max = repetitions;
+        }
+        number /= 2;
+    }
+    return max;
+}
+````
+
 </details>
 
 ##### 222. Shortest absolute path
