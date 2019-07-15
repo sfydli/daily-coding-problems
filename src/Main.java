@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Stack;
+import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -46,13 +47,19 @@ public class Main {
         assert node.getNumberOfUnivalSubtrees() == 5;
         System.out.println(node.getNumberOfUnivalSubtrees());*/
 
-        // Problem #222
-        /*System.out.println(solution222("/usr/bin/../bin/./scripts/../"));
-        System.out.println(solution222("/usr/../usr/bin/../bin/./langs/python/../java"));*/
+        // Problem #10
+        /*solution10(() -> System.out.println("Hello"), 1000);*/
+
+        // Problem #11
+        /*System.out.println(Arrays.toString(solution11("de", new String[]{"dog", "deer", "deal"})));*/
 
         // Problem #214
         /*System.out.println(solution214(156));
         System.out.println(solution214(1983));*/
+
+        // Problem #222
+        /*System.out.println(solution222("/usr/bin/../bin/./scripts/../"));
+        System.out.println(solution222("/usr/../usr/bin/../bin/./langs/python/../java"));*/
     }
 
     public static boolean solution1(int[] numbers, int k) {
@@ -113,6 +120,21 @@ public class Main {
                     ? solution7(message.substring(1)) + solution7(message.substring(2))
                     : solution7(message.substring(1));
         }
+    }
+
+    public static void solution10(Runnable f, int n) {
+        try {
+            TimeUnit.MILLISECONDS.sleep(n);
+            f.run();
+        } catch (InterruptedException e) {
+            System.out.println("Execution error: " + e.getMessage());
+        }
+    }
+
+    public static String[] solution11(String s, String[] queryStrings) {
+        return Arrays.stream(queryStrings)
+                .filter(str -> str.startsWith(s))
+                .toArray(String[]::new);
     }
 
     public static String solution222(String path) {

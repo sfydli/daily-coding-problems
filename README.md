@@ -287,6 +287,55 @@ private Pair<Integer, T> getNumberOfUnivalSubtrees(Node<T> node) {
 ````
 </details>
 
+##### 10. Job scheduler
+
+~~~~
+This problem was asked by Apple.
+
+Implement a job scheduler which takes in a function f and an integer n, and calls f after n milliseconds.
+~~~~
+
+<details>
+<summary>Solution</summary>
+
+````java
+public static void solution10(Runnable f, int n) {
+    try {
+        TimeUnit.MILLISECONDS.sleep(n);
+        f.run();
+    } catch (InterruptedException e) {
+        System.out.println("Execution error: " + e.getMessage());
+    }
+}
+````
+
+</details>
+
+##### 11. Autocomplete system
+
+~~~~
+This problem was asked by Twitter.
+
+Implement an autocomplete system. That is, given a query string s and a set of all possible query strings, return all strings in the set that have s as a prefix.
+
+For example, given the query string de and the set of strings [dog, deer, deal], return [deer, deal].
+
+Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.
+~~~~
+
+<details>
+<summary>Solution</summary>
+
+````java
+public static String[] solution11(String s, String[] queryStrings) {
+    return Arrays.stream(queryStrings)
+            .filter(str -> str.startsWith(s))
+            .toArray(String[]::new);
+}
+````
+
+</details>
+
 ##### 214. Longest consecutive run of 1s
 
 ~~~~
