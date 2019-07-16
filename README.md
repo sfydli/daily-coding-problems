@@ -7,6 +7,9 @@
     + [5. Functional min-max implementation](#5-functional-min-max-implementation)
     + [7. Number of decoding methods](#7-number-of-decoding-methods)
     + [8. Count of unival subtrees](#8-count-of-unival-subtrees)
+    + [10. Job scheduler](#10-job-scheduler)
+    + [11. Autocomplete system](#11-autocomplete-system)
+    + [13. Substring with distinct characters](#13-substring-with-distinct-characters)
     + [214. Longest consecutive run of 1s](#214-longest-consecutive-run-of-1s)
     + [222. Shortest absolute path](#222-shortest-absolute-path)
 
@@ -331,6 +334,49 @@ public static String[] solution11(String s, String[] queryStrings) {
     return Arrays.stream(queryStrings)
             .filter(str -> str.startsWith(s))
             .toArray(String[]::new);
+}
+````
+
+</details>
+
+##### 13. Substring with distinct characters
+
+~~~~
+This problem was asked by Amazon.
+
+Given an integer k and a string s, find the length of the longest substring that contains at most k distinct characters.
+
+For example, given s = "abcba" and k = 2, the longest substring with k distinct characters is "bcb".
+~~~~
+
+<details>
+<summary>Solution</summary>
+
+````java
+public static String solution13(int k, String s) {
+    String result = "";
+    StringBuilder substr = new StringBuilder();
+    for (int i = 0; i < s.length(); i++) {
+        int distinctCharCount = 0;
+        int j = i;
+        while (distinctCharCount != -1 && j < s.length()) {
+            char charAt = s.charAt(j);
+            if (substr.toString().contains(s.substring(j, j + 1))) {
+                substr.append(charAt);
+            } else if (distinctCharCount < k) {
+                substr.append(charAt);
+                distinctCharCount++;
+            } else {
+                substr.delete(0, substr.length());
+                distinctCharCount = -1;
+            }
+            if (substr.length() > result.length()) {
+                result = substr.toString();
+            }
+            ++j;
+        }
+    }
+    return result;
 }
 ````
 

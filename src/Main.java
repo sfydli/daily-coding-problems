@@ -53,6 +53,10 @@ public class Main {
         // Problem #11
         /*System.out.println(Arrays.toString(solution11("de", new String[]{"dog", "deer", "deal"})));*/
 
+        // Problem #13
+        /*System.out.println(solution13(2, "abcba"));
+        System.out.println(solution13(2, "ababbaccccccccccccccccccba"));*/
+
         // Problem #214
         /*System.out.println(solution214(156));
         System.out.println(solution214(1983));*/
@@ -135,6 +139,32 @@ public class Main {
         return Arrays.stream(queryStrings)
                 .filter(str -> str.startsWith(s))
                 .toArray(String[]::new);
+    }
+
+    public static String solution13(int k, String s) {
+        String result = "";
+        StringBuilder substr = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            int distinctCharCount = 0;
+            int j = i;
+            while (distinctCharCount != -1 && j < s.length()) {
+                char charAt = s.charAt(j);
+                if (substr.toString().contains(s.substring(j, j + 1))) {
+                    substr.append(charAt);
+                } else if (distinctCharCount < k) {
+                    substr.append(charAt);
+                    distinctCharCount++;
+                } else {
+                    substr.delete(0, substr.length());
+                    distinctCharCount = -1;
+                }
+                if (substr.length() > result.length()) {
+                    result = substr.toString();
+                }
+                ++j;
+            }
+        }
+        return result;
     }
 
     public static String solution222(String path) {
